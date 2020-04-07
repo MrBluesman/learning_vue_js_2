@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping List</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+</head>
+<body>
+<div class="shopping-list">
+  <h1 class="page-header shopping-list__header">Shopping List</h1>
+  <div class="input-group">
+    <input class="form-control shopping-list__input"
+           placeholder="Add shopping list item"
+           type="text">
+    <span class="input-group-btn">
+      <button type="button"
+              class="btn btn-default shopping-list__button">Add!</button>
+    </span>
+  </div>
+  <ul class="list-group shopping-list__list">
+    <li class="list-group-item list__item">
+      <label>
+        <input class="item__input"
+               type="checkbox">Banana
+      </label>
+    </li>
+    <li class="list-group-item list__item">
+      <label>
+        <input class="item__input"
+               type="checkbox">Tomato
+      </label>
+    </li>
+    <li class="list-group-item list__item list__item--removed">
+      <label>
+        <input type="checkbox"
+               class="item__input"
+               checked>Garlic
+      </label>
+    </li>
+  </ul>
+  <div class="shopping-list__footer">
+    <hr>
+    <em>Change the title of your shopping list</em>
+    <input type="text"
+           class="footer__input form-control"
+           value="Shopping List">
+  </div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
