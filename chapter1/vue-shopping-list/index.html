@@ -14,11 +14,14 @@
      class="shopping-list">
   <h1 class="page-header shopping-list__header">{{ title }}</h1>
   <div class="input-group">
-    <input class="form-control shopping-list__input"
+    <input v-model="newItem"
+           @keyup.enter="addItem"
+           class="form-control shopping-list__input"
            placeholder="Add shopping list item"
            type="text">
     <span class="input-group-btn">
       <button type="button"
+              @click="addItem"
               class="btn btn-default shopping-list__button">Add!</button>
     </span>
   </div>
