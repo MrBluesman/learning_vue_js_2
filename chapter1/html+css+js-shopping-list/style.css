@@ -1,9 +1,33 @@
-.container {
+.shopping-list {
     width: 40%;
     margin: 20px auto 0 auto;
 }
 
-.footer {
+.shopping-list__header {
+    text-align: center;
+}
+
+.shopping-list__list {
+    margin-top: 15px;
+}
+
+.list__item input {
+    margin-right: 5px;
+}
+
+.list__item.list__item--removed {
+    background-color: rgba(128, 124, 121, 0.23);
+}
+
+.list__item.list__item--removed label {
+    text-decoration: line-through;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+.shopping-list__footer {
     font-size: 0.7em;
     margin-top: 20vh;
 }
