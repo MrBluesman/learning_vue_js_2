@@ -11,8 +11,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
 </head>
 <body>
-<div class="shopping-list">
-  <h1 class="page-header shopping-list__header">Shopping List</h1>
+<div id="shopping-list"
+     class="shopping-list">
+  <h1 class="page-header shopping-list__header">{{ title }}</h1>
   <div class="input-group">
     <input class="form-control shopping-list__input"
            placeholder="Add shopping list item"
@@ -46,7 +47,8 @@
   <div class="shopping-list__footer">
     <hr>
     <em>Change the title of your shopping list</em>
-    <input type="text"
+    <input v-model="title"
+           type="text"
            class="footer__input form-control"
            value="Shopping List">
   </div>
