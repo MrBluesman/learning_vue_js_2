@@ -17,6 +17,12 @@ new Vue({
   computed: {
     title: function () {
       return this.pomodoroState === POMODORO_STATES.WORK ? 'Work!' : 'Rest!';
+    },
+    min: function () {
+      return this.leftPad(this.minute);
+    },
+    sec: function () {
+      return this.leftPad(this.second);
     }
   },
   methods: {
@@ -48,6 +54,9 @@ new Vue({
       this.minute = this.pomodoroState === POMODORO_STATES.WORK
         ? WORKING_TIME_LENGTH_IN_MINUTES
         : RESTING_TIME_LENGTH_IN_MINUTES;
+    },
+    leftPad(value) {
+      return value < 10 ? '0' + value : value;
     }
   }
 });
