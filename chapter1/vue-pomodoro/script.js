@@ -14,6 +14,11 @@ new Vue({
     timestamp: 0,
     interval: null
   },
+  computed: {
+    title: function () {
+      return this.pomodoroState === POMODORO_STATES.WORK ? 'Work!' : 'Rest!';
+    }
+  },
   methods: {
     start: function () {
       this._tick();
