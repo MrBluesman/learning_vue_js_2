@@ -6,14 +6,28 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <style>
+  button:disabled i {
+    color: gray;
+  }
+  </style>
 </head>
 <body>
 <div id="app"
      class="container">
   <h2>
     <span>Pomodoro</span>
-    <button @click="start()">
+    <button @click="start()"
+            :disabled="state === 'started'">
       <i class="glyphicon glyphicon-play"></i>
+    </button>
+    <button @click="pause()"
+            :disabled="state !== 'started'">
+      <i class="glyphicon glyphicon-pause"></i>
+    </button>
+    <button @click="stop()"
+            :disabled="state !== 'started' && state !== 'paused'">
+      <i class="glyphicon glyphicon-stop"></i>
     </button>
   </h2>
   <h3>{{ title }}</h3>
