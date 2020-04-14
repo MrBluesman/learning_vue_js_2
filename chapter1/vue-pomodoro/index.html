@@ -10,6 +10,11 @@
   button:disabled i {
     color: gray;
   }
+  img {
+    max-width:  750px;
+    max-height: 750px;
+    background-size: cover;
+  }
   </style>
 </head>
 <body>
@@ -35,6 +40,10 @@
     <div class="pomodoro-timer">
       <span>{{ min }}</span>:<span>{{ sec }}</span>
     </div>
+  </div>
+  <div class="well"
+       v-if="isRestingTime && imageUrl">
+    <img :src="imageUrl" alt="Cat image"/>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
