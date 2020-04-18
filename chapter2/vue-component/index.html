@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping List</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="style.css">
+</head>
+<body>
+<div id="shopping-list"
+     class="shopping-list">
+  <h1 class="page-header shopping-list__header">{{ title }}</h1>
+  <div class="input-group">
+    <input v-model="newItem"
+           @keyup.enter="addItem"
+           class="form-control shopping-list__input"
+           placeholder="Add shopping list item"
+           type="text">
+    <span class="input-group-btn">
+      <button type="button"
+              @click="addItem"
+              class="btn btn-default shopping-list__button">Add!</button>
+    </span>
+  </div>
+  <ul class="list-group shopping-list__list">
+    <li v-for="item in items"
+        class="list-group-item list__item"
+        :class="{ 'list__item--removed': item.completed }">
+      <label>
+        <input v-model="item.completed"
+               class="item__input"
+               type="checkbox">{{ item.name }}
+      </label>
+    </li>
+  </ul>
+  <div class="shopping-list__footer">
+    <hr>
+    <em>Change the title of your shopping list</em>
+    <input v-model="title"
+           type="text"
+           class="footer__input form-control">
+  </div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
