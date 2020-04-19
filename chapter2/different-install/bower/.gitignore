@@ -1,0 +1,5 @@
+# IDEs and editors
+/.idea
+
+# Bower
+/bower_components
