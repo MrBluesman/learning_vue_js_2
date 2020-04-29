@@ -1,5 +1,7 @@
 # vue-cli
 
+> Example from Learning Vue.js book
+
 ## Project setup
 ```
 npm install

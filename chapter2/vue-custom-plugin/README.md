@@ -1,14 +1,15 @@
-## Simple custom vue plugin example
+# Simple custom vue.js plugin example
 
-<ol>
-<li>
-Run
+> Example from Learning Vue.js book
 
-`npm install`<br />
-`npm run build`
-</li>
-<li>Open index.html in the browser</li>
-</ol>
+## Build setup
+```bash
+# install dependencies
+npm install
 
-
+# build for production with minification
+npm run build
+```
+## Live version
+Open `index.html` in your browser
 

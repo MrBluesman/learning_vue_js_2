@@ -1,5 +1,11 @@
-## Vue.js - Bower installation example
+# Vue.js - Bower installation example
 
-##### Run
-`bower install vue`
-##### Open `index.html` in your browser
+> Example from Learning Vue.js book
+
+## Build setup
+```bash
+# install dependencies
+bower install vue
+```
+## Live version
+Open `index.html` in your browser
