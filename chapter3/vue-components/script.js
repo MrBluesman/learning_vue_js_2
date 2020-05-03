@@ -1,16 +1,11 @@
-// creating component
-const HelloComponent = Vue.extend({
-  template: '#hello'
-});
-
-// registering component
-Vue.component('hello-component', HelloComponent);
-
 // both initialization and registration can be written as single
 // Vue.component invocation with corresponding options
-Vue.component('hello-component2', {
-  template: '<h1>Hello 2</h1>'
-})
+Vue.component('hello-component', {
+  template: '<h1>Hello</h1>',
+  data: function () {
+    return { msg: 'Hello' };
+  }
+});
 
 // initializing the Vue application
 new Vue({
