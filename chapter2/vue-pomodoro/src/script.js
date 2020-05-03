@@ -7,7 +7,7 @@ const STATES = {
   STOPPED: 'stopped',
   PAUSED: 'paused',
 };
-const WORKING_TIME_LENGTH_IN_MINUTES = 1;
+const WORKING_TIME_LENGTH_IN_MINUTES = 25;
 const RESTING_TIME_LENGTH_IN_MINUTES = 5;
 
 new Vue({
@@ -16,7 +16,7 @@ new Vue({
     state: STATES.STOPPED,
     minute: WORKING_TIME_LENGTH_IN_MINUTES,
     second: 0,
-    pomodoroState: POMODORO_STATES.REST,
+    pomodoroState: POMODORO_STATES.WORK,
     tickInterval: null,
     imageInterval: null,
     imageUrl: null,
