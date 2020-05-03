@@ -5,15 +5,35 @@
   <title>Hello Component</title>
 </head>
 <body>
-<!-- template declaration -->
+
+<!-- template for the form -->
+<template id="form">
+  <div>
+    <label for="name">What's your name?</label>
+    <input :value="value"
+           type="text"
+           id="name"
+           @input="onInput">
+  </div>
+</template>
+
+<!-- template for saying hello -->
 <template id="hello">
   <h1>{{ msg }} {{ user }}</h1>
 </template>
 
+<!-- template for greetings -->
+<template id="greetings">
+  <div>
+    <form-component v-model="user"></form-component>
+    <hello-component :user="user"></hello-component>
+  </div>
+</template>
+
 <div id="app">
-  <!-- binding a user data property to the component -->
-  <hello-component :user="user"></hello-component>
+  <greetings-component></greetings-component>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
 <script src="script.js"></script>
 </body>
