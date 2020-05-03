@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Pomodoro",
+  "version": "1.0",
+  "description": "Simple pomodoro app with fulfilled with cat images",
+  "minimum_chrome_version": "23",
+  "icons": {
+    "16": "icon_16.png",
+    "128": "icon_128.png"
+  },
+  "content_security_policy": "img-src 'self' blob: filesystem: data: chrome-extension-resource:;",
+  "app": {
+    "background": {
+      "scripts": [
+        "main.js"
+      ]
+    }
+  }
+}

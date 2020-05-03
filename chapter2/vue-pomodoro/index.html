@@ -5,17 +5,21 @@
   <title>Pomodoro</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        href="bootstrap.min.css">
   <style>
   button:disabled i {
     color: gray;
   }
+
   img {
-    max-width:  750px;
+    max-width: 750px;
     max-height: 750px;
     background-size: cover;
   }
+
   </style>
+  <script src="https://kit.fontawesome.com/adfe860f16.js"
+          crossorigin="anonymous"></script>
 </head>
 <body>
 <div id="app"
@@ -23,16 +27,19 @@
   <h2>
     <span>Pomodoro</span>
     <button @click="start()"
+            class="btn btn-default"
             :disabled="state === 'started'">
-      <i class="glyphicon glyphicon-play"></i>
+      <i class="fas fa-play"></i>
     </button>
     <button @click="pause()"
+            class="btn btn-default"
             :disabled="state !== 'started'">
-      <i class="glyphicon glyphicon-pause"></i>
+      <i class="fas fa-pause"></i>
     </button>
     <button @click="stop()"
+            class="btn btn-default"
             :disabled="state !== 'started' && state !== 'paused'">
-      <i class="glyphicon glyphicon-stop"></i>
+            <i class="fas fa-stop"></i>
     </button>
   </h2>
   <h3>{{ title }}</h3>
@@ -43,10 +50,11 @@
   </div>
   <div class="well"
        v-if="isRestingTime && imageUrl">
-    <img :src="imageUrl" alt="Cat image"/>
+    <img :src="imageUrl"
+         alt="Cat image"/>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
-<script src="script.js"></script>
+<script src="assets/vue.js"></script>
+<script src="src/script.js"></script>
 </body>
 </html>
