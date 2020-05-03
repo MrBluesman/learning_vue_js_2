@@ -1,6 +1,6 @@
 // creating component
 const HelloComponent = Vue.extend({
-  template: '<h1>Hello</h1>'
+  template: '#hello'
 });
 
 // registering component
