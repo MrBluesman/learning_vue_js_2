@@ -10,9 +10,9 @@
         href="style.css">
 </head>
 <body>
-<div id="shopping-list"
-     class="shopping-list">
-  <h1 class="page-header shopping-list__header">{{ title }}</h1>
+
+<!-- add new item template -->
+<template id="add-item-template">
   <div class="input-group">
     <input v-model="newItem"
            @keyup.enter="addItem"
@@ -25,23 +25,49 @@
               class="btn btn-default shopping-list__button">Add!</button>
     </span>
   </div>
+</template>
+
+<!-- list item template -->
+<template id="item-template">
+  <li class="list-group-item list__item"
+      :class="{ 'list__item--removed': item.completed }">
+    <label>
+      <input v-model="item.completed"
+             class="item__input"
+             type="checkbox">{{ item.name }}
+    </label>
+  </li>
+</template>
+
+<!-- items list template -->
+<template id="items-template">
   <ul class="list-group shopping-list__list">
-    <li v-for="item in items"
-        class="list-group-item list__item"
-        :class="{ 'list__item--removed': item.completed }">
-      <label>
-        <input v-model="item.completed"
-               class="item__input"
-               type="checkbox">{{ item.name }}
-      </label>
-    </li>
+    <item-component v-for="item in items"
+                    :item="item"></item-component>
+  </ul>
+</template>
+
+<!-- change title template -->
+<template id="change-title-template">
+  <div>
+    <em>Change the title of your shopping list</em>
+    <input :value="value"
+           @input="onInput"
+           type="text"
+           class="footer__input form-control">
+  </div>
+</template>
+
+<div id="shopping-list"
+     class="shopping-list">
+  <h1 class="page-header shopping-list__header">{{ title }}</h1>
+  <add-item-component></add-item-component>
+  <ul class="list-group shopping-list__list">
+    <items-component :items="items"></items-component>
   </ul>
   <div class="shopping-list__footer">
     <hr>
-    <em>Change the title of your shopping list</em>
-    <input v-model="title"
-           type="text"
-           class="footer__input form-control">
+    <change-title-component v-model="title"></change-title-component>
   </div>
 </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
