@@ -61,7 +61,7 @@
 <div id="shopping-list"
      class="shopping-list">
   <h1 class="page-header shopping-list__header">{{ title }}</h1>
-  <add-item-component></add-item-component>
+  <add-item-component @on-add-item="addItem($event)"></add-item-component>
   <ul class="list-group shopping-list__list">
     <items-component :items="items"></items-component>
   </ul>

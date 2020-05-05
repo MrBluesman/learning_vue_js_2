@@ -26,7 +26,10 @@ Vue.component('add-item-component', {
   },
   methods: {
     addItem: function () {
-      console.log('Implement adding');
+      this.$emit('on-add-item', {
+        item: this.newItem,
+        onSuccessFullAdd: () => this.newItem = ''
+      });
     }
   }
 });
@@ -57,17 +60,19 @@ new Vue({
   el: '#shopping-list',
   data,
   methods: {
-    addItem() {
-      // if (!this.newItem || this.items.filter(i => i.name === this.newItem).length > 0) {
-      //   return;
-      // }
-      //
-      // this.items.push({
-      //   name: this.newItem,
-      //   completed: false
-      // });
-      //
-      // this.newItem = '';
+    addItem(event) {
+      const { item, onSuccessFullAdd } = event;
+
+      if (!item || this.items.filter(i => i.name === item).length > 0) {
+        return;
+      }
+
+      this.items.push({
+        name: item,
+        completed: false
+      });
+
+      onSuccessFullAdd();
     }
   }
 });
