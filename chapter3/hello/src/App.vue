@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>This is a single file component demo</h1>
     <HelloComponent/>
   </div>
 </template>
