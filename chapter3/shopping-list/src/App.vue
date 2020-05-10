@@ -3,7 +3,7 @@
        class="shopping-list">
     <h2 class="page-header shopping-list__header">{{ title }}</h2>
     <AddItemComponent/>
-    <ItemsComponent/>
+    <ItemsComponent :items="items"/>
     <div class="shopping-list__footer">
       <hr>
       <ChangeTitleComponent/>
