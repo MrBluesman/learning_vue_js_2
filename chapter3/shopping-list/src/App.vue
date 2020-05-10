@@ -2,7 +2,7 @@
   <div id="app"
        class="shopping-list">
     <h2 class="page-header shopping-list__header">{{ title }}</h2>
-    <AddItemComponent/>
+    <AddItemComponent @on-add-item="addItem"/>
     <ItemsComponent :items="items"/>
     <div class="shopping-list__footer">
       <hr>
@@ -39,15 +39,19 @@ export default {
     };
   },
   methods: {
-    addItem(text) {
-      if (!text || this.items.filter((i) => i.text === text).length > 0) {
+    addItem(event) {
+      const { name, onSuccessFullAdd } = event;
+
+      if (!name || this.items.filter((i) => i.text === name).length > 0) {
         return;
       }
 
       this.items.push({
-        text,
+        text: name,
         checked: false,
       });
+
+      onSuccessFullAdd();
     },
   },
 };
