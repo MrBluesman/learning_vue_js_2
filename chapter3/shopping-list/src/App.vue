@@ -6,7 +6,7 @@
     <ItemsComponent :items="items"/>
     <div class="shopping-list__footer">
       <hr>
-      <ChangeTitleComponent/>
+      <ChangeTitleComponent v-model="title"/>
     </div>
   </div>
 </template>
@@ -53,7 +53,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss"
+       scoped>
 .shopping-list {
   width: 40%;
   margin: 20px auto 0 auto;
