@@ -1,10 +1,10 @@
 <template>
-
+  <div>Controls</div>
 </template>
 
 <script>
 export default {
-  name: 'ControlsComponent.vue'
+  name: 'ControlsComponent'
 };
 </script>
 
