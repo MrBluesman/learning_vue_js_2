@@ -1,10 +1,15 @@
 <template>
-  <div>State title</div>
+  <h3>{{ title }}</h3>
 </template>
 
 <script>
 export default {
-  name: 'StateTitleComponent'
+  name: 'StateTitleComponent',
+  data() {
+    return {
+      title: 'STATE'
+    };
+  }
 };
 </script>
 

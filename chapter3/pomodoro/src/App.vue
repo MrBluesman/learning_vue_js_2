@@ -6,7 +6,7 @@
       <ControlsComponent/>
     </h2>
     <StateTitleComponent/>
-    <CountdownComponent/>
+    <CountdownComponent class="mb-2"/>
     <KittensComponent/>
   </div>
 </template>
