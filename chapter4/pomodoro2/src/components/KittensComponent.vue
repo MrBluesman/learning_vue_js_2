@@ -12,7 +12,7 @@ export default {
   name: 'KittensComponent',
   data() {
     return {
-      catImgSrc: 'https://www.cat-test-url.com/cat.png'
+      catImgSrc: 'https://cdn2.thecatapi.com/images/MjAwMDc1MQ.jpg'
     };
   }
 };
