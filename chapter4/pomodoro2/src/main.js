@@ -13,7 +13,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 Vue.filter('lowercase', (value) => value.toLowerCase());
-Vue.filter('leftpad', (value) => value < 10 ? `0${value}` : value);
+Vue.filter('uppercase', (value) => value.toUpperCase());
+Vue.filter('addSpace', (value) => `${value} `);
+Vue.filter('leftPad', (value) => value < 10 ? `0${value}` : value);
 
 new Vue({
   render: h => h(App),

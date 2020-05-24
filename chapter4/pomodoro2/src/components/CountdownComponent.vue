@@ -1,7 +1,7 @@
 <template>
   <div class="card bg-light">
     <div class="card-body">
-      <span>{{ min | leftpad }}:{{ sec | leftpad }}</span>
+      <span>{{ min | leftPad }}:{{ sec | leftPad }}</span>
     </div>
   </div>
 </template>
