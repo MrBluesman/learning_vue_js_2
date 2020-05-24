@@ -1,7 +1,7 @@
 <template>
   <div class="card bg-light">
     <div class="card-body">
-      <span>{{ min + ':' + sec }}</span>
+      <span>{{ min | leftpad }}:{{ sec | leftpad }}</span>
     </div>
   </div>
 </template>
@@ -11,8 +11,8 @@ export default {
   name: 'CountdownComponent',
   data() {
     return {
-      min: '00',
-      sec: '00'
+      min: 1,
+      sec: 5,
     };
   }
 };
