@@ -7,7 +7,7 @@ export default {
   name: 'StateTitleComponent',
   data() {
     return {
-      title: 'STATE'
+      title: 'Learning Vue.js!'
     };
   }
 };
