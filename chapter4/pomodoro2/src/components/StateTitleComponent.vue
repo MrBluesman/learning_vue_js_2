@@ -1,5 +1,8 @@
 <template>
-  <h3>{{ title }}</h3>
+  <div>
+    <h3>{{ isWorking ? workingTitle : restingTitle }}</h3>
+    <!--    <p>{{ Math.pow(5,2) }}</p>-->
+  </div>
 </template>
 
 <script>
@@ -7,9 +10,11 @@ export default {
   name: 'StateTitleComponent',
   data() {
     return {
-      title: 'Learning Vue.js!'
+      workingTitle: 'Work!',
+      restingTitle: 'Rest!'
     };
-  }
+  },
+  props: ['isWorking']
 };
 </script>
 

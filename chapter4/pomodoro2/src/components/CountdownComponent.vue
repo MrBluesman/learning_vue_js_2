@@ -1,7 +1,7 @@
 <template>
   <div class="card bg-light">
     <div class="card-body">
-      <span>{{ min }}</span>:<span>{{ sec }}</span>
+      <span>{{ min + ':' + sec }}</span>
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
       <span>Pomodoro</span>
       <ControlsComponent/>
     </h2>
-    <StateTitleComponent/>
+    <StateTitleComponent :is-working="isWorking"/>
     <CountdownComponent class="mb-2"/>
     <KittensComponent/>
   </div>
@@ -17,6 +17,11 @@ import StateTitleComponent from './components/StateTitleComponent';
 import CountdownComponent from './components/CountdownComponent';
 import KittensComponent from './components/KittensComponent';
 
+window.data = {
+  kittens: true,
+  isWorking: true
+};
+
 export default {
   name: 'App',
   components: {
@@ -24,6 +29,9 @@ export default {
     CountdownComponent,
     StateTitleComponent,
     ControlsComponent
+  },
+  data() {
+    return window.data;
   }
 };
 </script>
