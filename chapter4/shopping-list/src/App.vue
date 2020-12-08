@@ -1,75 +1,81 @@
 <template>
   <div id="app"
-       class="shopping-list">
-    <h2 class="page-header shopping-list__header">{{ title }}</h2>
-    <AddItemComponent @on-add-item="addItem"/>
-    <ItemsComponent :items="items"/>
-    <div class="shopping-list__footer">
-      <hr>
-      <ChangeTitleComponent v-model="title"/>
+       class="shopping-lists">
+    <ul class="nav nav-tabs"
+        role="tablist">
+      <li v-for="(list, index) in shoppingLists"
+          :key="list.id"
+          :class="index === 0 ? 'active' : ''"
+          role="presentation">
+        <a :href="`#${list.id}`"
+           :aria-controls="list.id"
+           role="tab"
+           data-toggle="tab">{{ list.title }}</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div v-for="(list, index) in shoppingLists"
+           :key="list.id"
+           class="tab-pane"
+           :class="index === 0 ? 'active' : ''"
+           role="tabpane1"
+           :id="list.id">
+        <ShoppingListComponent :title="list.title"
+                               :items="list.items"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import AddItemComponent from './components/AddItemComponent.vue';
-import ItemsComponent from './components/ItemsComponent.vue';
-import ChangeTitleComponent from './components/ChangeTitleComponent.vue';
+import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    AddItemComponent,
-    ItemsComponent,
-    ChangeTitleComponent,
+    ShoppingListComponent,
   },
   data() {
     return {
-      title: 'Shopping List',
-      items: [
+      shoppingLists: [
         {
-          text: 'Bananas',
-          checked: true,
+          id: 'groceries',
+          title: 'Groceries',
+          items: [
+            {
+              text: 'Bananas',
+              checked: true,
+            },
+            {
+              text: 'Apples',
+              checked: false,
+            },
+          ],
         },
         {
-          text: 'Apples',
-          checked: false,
+          id: 'clothes',
+          title: 'Clothes',
+          items: [
+            {
+              text: 'black dress',
+              checked: false,
+            },
+            {
+              text: 'all stars',
+              checked: false,
+            },
+          ],
         },
       ],
     };
-  },
-  methods: {
-    addItem(event) {
-      const { name, onSuccessFullAdd } = event;
-
-      if (!name || this.items.filter((i) => i.text === name).length > 0) {
-        return;
-      }
-
-      this.items.push({
-        text: name,
-        checked: false,
-      });
-
-      onSuccessFullAdd();
-    },
   },
 };
 </script>
 
 <style lang="scss"
        scoped>
-.shopping-list {
+.shopping-lists {
   width: 40%;
   margin: 20px auto 0 auto;
-
-  &__header {
-    text-align: center;
-  }
-
-  &__footer {
-    font-size: 0.7em;
-    margin-top: 20vh;
-  }
 }
 </style>
