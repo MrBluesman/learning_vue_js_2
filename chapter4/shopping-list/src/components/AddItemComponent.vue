@@ -26,7 +26,7 @@ export default {
   methods: {
     addItem() {
       this.$emit('on-add-item', {
-        name: this.newItem,
+        name: this.newItem.trim(),
         onSuccessFullAdd: () => {
           this.newItem = '';
         },
