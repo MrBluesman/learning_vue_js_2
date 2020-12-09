@@ -7,10 +7,8 @@
           :key="list.id"
           :class="index === 0 ? 'active' : ''"
           role="presentation">
-        <a :href="`#${list.id}`"
-           :aria-controls="list.id"
-           role="tab"
-           data-toggle="tab">{{ list.title }}</a>
+        <ShoppingListTitleComponent :id="list.id"
+                                    :title="list.title"/>
       </li>
     </ul>
     <div class="tab-content">
@@ -29,10 +27,12 @@
 
 <script>
 import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
+import ShoppingListTitleComponent from '@/components/ShoppingListTitleComponent.vue';
 
 export default {
   name: 'App',
   components: {
+    ShoppingListTitleComponent,
     ShoppingListComponent,
   },
   data() {
