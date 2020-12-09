@@ -5,7 +5,8 @@
     <ItemsComponent :items="items"/>
     <div class="shopping-list__footer">
       <hr>
-      <ChangeTitleComponent v-model="title"/>
+      <ChangeTitleComponent :title="title"
+                            @on-change-title="onChangeTitle"/>
     </div>
   </div>
 </template>
@@ -23,6 +24,10 @@ export default {
     ChangeTitleComponent,
   },
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -49,6 +54,12 @@ export default {
       });
 
       onSuccessFullAdd();
+    },
+    onChangeTitle(text) {
+      this.$emit('on-change-title', {
+        id: this.id,
+        text,
+      });
     },
   },
 };
