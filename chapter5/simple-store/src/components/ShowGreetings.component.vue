@@ -5,10 +5,9 @@
 <script>
 export default {
   name: 'ShowGreetingsComponent',
-  props: {
-    msg: {
-      type: String,
-      required: true
+  computed: {
+    msg() {
+      return this.$store.state.msg;
     }
   }
 };

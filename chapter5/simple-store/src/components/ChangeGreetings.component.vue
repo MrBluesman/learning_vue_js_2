@@ -1,16 +1,20 @@
 <template>
-  <input v-model="msg"
+  <input :value="msg"
          type="text"
-         name="msg">
+         name="msg" @keyup="changeMsg">
 </template>
 
 <script>
 export default {
   name: 'ChangeGreetingsComponent',
-  props: {
-    msg: {
-      type: String,
-      required: true
+  computed: {
+    msg() {
+      return this.$store.state.msg;
+    }
+  },
+  methods: {
+    changeMsg(event) {
+      this.$store.commit('changeMessage', event.target.value);
     }
   }
 };

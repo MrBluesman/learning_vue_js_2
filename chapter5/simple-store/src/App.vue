@@ -1,22 +1,22 @@
 <template>
   <div id="app">
-    <ShowGreetingsComponent :msg="msg"/>
-    <ChangeGreetingsComponent :msg="msg"/>
+    <ShowGreetingsComponent/>
+    <ChangeGreetingsComponent/>
   </div>
 </template>
 
 <script>
-
 import ShowGreetingsComponent from '@/components/ShowGreetings.component';
 import ChangeGreetingsComponent from '@/components/ChangeGreetings.component';
+import store from './vuex/store';
+
 export default {
   name: 'App',
-  components: { ChangeGreetingsComponent, ShowGreetingsComponent },
-  data() {
-    return {
-      msg: 'Hello Vue!'
-    };
-  }
+  components: {
+    ChangeGreetingsComponent,
+    ShowGreetingsComponent
+  },
+  store,
 };
 </script>
 
