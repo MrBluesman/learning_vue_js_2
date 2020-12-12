@@ -7,6 +7,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { CHANGE_MSG } from '@/vuex/mutation_types';
 
 export default {
   name: 'ChangeGreetingsComponent',
@@ -15,7 +16,7 @@ export default {
   }),
   methods: {
     changeMsg(event) {
-      this.$store.commit('changeMessage', event.target.value);
+      this.$store.commit(CHANGE_MSG, event.target.value);
     }
   }
 };
