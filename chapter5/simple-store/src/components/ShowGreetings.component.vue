@@ -3,12 +3,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ShowGreetingsComponent',
-  computed: {
-    msg() {
-      return this.$store.state.msg;
-    }
-  }
+  computed: mapGetters({
+    msg: 'getMessage',
+  }),
 };
 </script>
