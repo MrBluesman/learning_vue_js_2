@@ -2,23 +2,20 @@
   <input :value="msg"
          type="text"
          name="msg"
-         @keyup="changeMsg">
+         @keyup="handleMessageInputChanges">
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { CHANGE_MSG } from '@/vuex/mutation_types';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ChangeGreetingsComponent',
   computed: mapGetters({
     msg: 'getMessage',
   }),
-  methods: {
-    changeMsg(event) {
-      this.$store.commit(CHANGE_MSG, event.target.value);
-    }
-  }
+  methods: mapActions([
+    'handleMessageInputChanges',
+  ])
 };
 </script>
 
