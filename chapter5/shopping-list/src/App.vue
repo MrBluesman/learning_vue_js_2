@@ -29,6 +29,7 @@
 
 <script>
 import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
+import store from './vuex/store';
 
 export default {
   name: 'App',
@@ -69,6 +70,7 @@ export default {
       ],
     };
   },
+  store,
 };
 </script>
 
