@@ -1,7 +1,7 @@
 <template>
   <div class="change-title">
     <em>Change the title of your shopping list</em>
-    <input :value="title"
+    <input :value="value"
            class="form-control"
            @input="onInput"
            type="text">
@@ -12,14 +12,13 @@
 export default {
   name: 'ChangeTitleComponent',
   props: {
-    title: {
+    value: {
       type: String,
-      required: true,
     },
   },
   methods: {
     onInput(event) {
-      this.$emit('on-change-title', event.target.value);
+      this.$emit('input', event.target.value);
     },
   },
 };
