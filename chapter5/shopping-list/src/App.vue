@@ -7,10 +7,8 @@
           :key="list.id"
           :class="index === 0 ? 'active' : ''"
           role="presentation">
-        <a :href="`#${list.id}`"
-           :aria-controls="list.id"
-           role="tab"
-           data-toggle="tab">{{ list.title }}</a>
+        <ShoppingListTitleComponent :id="list.id"
+                                    :title="list.title"/>
       </li>
     </ul>
     <div class="tab-content">
@@ -20,8 +18,10 @@
            :class="index === 0 ? 'active' : ''"
            role="tabpane1"
            :id="list.id">
-        <ShoppingListComponent :title="list.title"
-                               :items="list.items"/>
+        <ShoppingListComponent :id="list.id"
+                               :title="list.title"
+                               :items="list.items"
+                               @on-change-title="onChangeTitle"/>
       </div>
     </div>
   </div>
@@ -29,10 +29,12 @@
 
 <script>
 import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
+import ShoppingListTitleComponent from '@/components/ShoppingListTitleComponent.vue';
 
 export default {
   name: 'App',
   components: {
+    ShoppingListTitleComponent,
     ShoppingListComponent,
   },
   data() {
@@ -68,6 +70,15 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    onChangeTitle(event) {
+      const { id, text } = event;
+      this.shoppingLists = this.shoppingLists.map((list) => (list.id === id ? {
+        ...list,
+        title: text,
+      } : list));
+    },
   },
 };
 </script>
