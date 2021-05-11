@@ -6,7 +6,11 @@ import mutations from './mutations';
 
 Vue.use(Vuex);
 
-const state = {};
+const state = {
+  started: false,
+  paused: false,
+  stopped: false,
+};
 
 export default new Vuex.Store({
   state,

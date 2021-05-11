@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import ControlsComponent from './components/ControlsComponent';
-import StateTitleComponent from './components/StateTitleComponent';
-import CountdownComponent from './components/CountdownComponent';
-import KittensComponent from './components/KittensComponent';
-import store from 'vuex/store';
+import ControlsComponent from '@/components/ControlsComponent';
+import StateTitleComponent from '@/components/StateTitleComponent';
+import CountdownComponent from '@/components/CountdownComponent';
+import KittensComponent from '@/components/KittensComponent';
+import store from './vuex/store';
 
 window.data = {
   kittens: true,
