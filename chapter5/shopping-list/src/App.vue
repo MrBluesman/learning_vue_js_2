@@ -20,7 +20,8 @@
            :class="index === 0 ? 'active' : ''"
            role="tabpane1"
            :id="list.id">
-        <ShoppingListComponent :title="list.title"
+        <ShoppingListComponent :id="list.id"
+                               :title="list.title"
                                :items="list.items"/>
       </div>
     </div>
@@ -29,6 +30,7 @@
 
 <script>
 import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
+import { mapGetters } from 'vuex';
 import store from './vuex/store';
 
 export default {
@@ -36,39 +38,10 @@ export default {
   components: {
     ShoppingListComponent,
   },
-  data() {
-    return {
-      shoppingLists: [
-        {
-          id: 'groceries',
-          title: 'Groceries',
-          items: [
-            {
-              text: 'Bananas',
-              checked: true,
-            },
-            {
-              text: 'Apples',
-              checked: false,
-            },
-          ],
-        },
-        {
-          id: 'clothes',
-          title: 'Clothes',
-          items: [
-            {
-              text: 'black dress',
-              checked: false,
-            },
-            {
-              text: 'all stars',
-              checked: false,
-            },
-          ],
-        },
-      ],
-    };
+  computed: {
+    ...mapGetters({
+      shoppingLists: 'getLists',
+    }),
   },
   store,
 };

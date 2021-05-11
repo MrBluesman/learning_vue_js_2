@@ -5,7 +5,8 @@
     <ItemsComponent :items="items"/>
     <div class="shopping-list__footer">
       <hr>
-      <ChangeTitleComponent v-model="title"/>
+      <ChangeTitleComponent :id="id"
+                            :title="title"/>
     </div>
   </div>
 </template>
@@ -23,6 +24,10 @@ export default {
     ChangeTitleComponent,
   },
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
