@@ -5,7 +5,7 @@
       <span>{{ 'Pomodoro' | uppercase }}</span>
       <ControlsComponent/>
     </h2>
-    <StateTitleComponent :is-working="isWorking"/>
+    <StateTitleComponent />
     <CountdownComponent class="mb-2"/>
     <transition name="fade">
       <KittensComponent v-show="!isWorking"/>
@@ -19,10 +19,10 @@ import StateTitleComponent from '@/components/StateTitleComponent';
 import CountdownComponent from '@/components/CountdownComponent';
 import KittensComponent from '@/components/KittensComponent';
 import store from './vuex/store';
+import { mapGetters } from 'vuex';
 
 window.data = {
-  kittens: true,
-  isWorking: true
+  kittens: true
 };
 
 export default {
@@ -36,6 +36,7 @@ export default {
   data() {
     return window.data;
   },
+  computed: mapGetters(['isWorking']),
   store,
 };
 </script>

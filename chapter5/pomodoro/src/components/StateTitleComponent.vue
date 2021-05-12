@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'StateTitleComponent',
   data() {
@@ -13,11 +15,7 @@ export default {
       restingTitle: 'Rest!'
     };
   },
-  props: {
-    isWorking: {
-      type: Boolean
-    },
-  },
+  computed: mapGetters(['isWorking']),
 };
 </script>
 
