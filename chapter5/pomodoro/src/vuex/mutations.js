@@ -1,5 +1,5 @@
-import { START, PAUSE, STOP } from '@/vuex/mutation_types';
-import { RESTING_TIME, WORKING_TIME } from '@/config';
+import { START, PAUSE, STOP, FETCH_KITTEN } from '@/vuex/mutation_types';
+import { KITTEN_TIME, RESTING_TIME, WORKING_TIME } from '@/config';
 
 function togglePomodoro(state, toggle = false) {
   toggle = toggle || !state.isWorking;
@@ -12,7 +12,19 @@ function tick(state) {
     togglePomodoro(state);
   }
 
+  if (state.counter % KITTEN_TIME === 0 && !state.isWorking) {
+    fetchKitten(state);
+  }
+
   state.counter--;
+  state.timestamp = new Date().getTime();
+}
+
+function fetchKitten(state) {
+  const xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( 'GET', `https://api.thecatapi.com/v1/images/search?size=med&ts=${state.timestamp}`, false );
+  xmlHttp.send( null );
+  state.catImgSrc = JSON.parse(xmlHttp.response)[0].url;
 }
 
 export default {
@@ -34,5 +46,8 @@ export default {
     state.stopped = true;
     clearInterval(state.interval);
     togglePomodoro(state, true);
+  },
+  [FETCH_KITTEN](state) {
+    fetchKitten(state);
   }
 }

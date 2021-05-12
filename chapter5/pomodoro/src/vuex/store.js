@@ -14,6 +14,8 @@ const state = {
   isWorking: true,
   counter: WORKING_TIME,
   interval: null,
+  catImgSrc: '',
+  timestamp: 0,
 };
 
 export default new Vuex.Store({

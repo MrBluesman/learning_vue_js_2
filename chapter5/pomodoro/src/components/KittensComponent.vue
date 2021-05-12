@@ -8,16 +8,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'KittensComponent',
-  data() {
-    return {
-      catImgSrc: 'https://cdn2.thecatapi.com/images/MjAwMDc1MQ.jpg'
-    };
-  }
+  computed: mapGetters({
+    catImgSrc: 'getCatImgSrc',
+  }),
+  methods: mapActions(['fetchKitten']),
+  mounted() {
+    this.fetchKitten();
+  },
 };
 </script>
 
 <style scoped>
+.card-body {
+  justify-content: center;
+  display: flex;
+}
 
+img {
+  max-width: 100%;
+  height: auto;
+}
 </style>
