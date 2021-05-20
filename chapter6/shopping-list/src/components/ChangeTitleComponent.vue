@@ -3,7 +3,7 @@
     <em>Change the title of your shopping list</em>
     <input :value="title"
            class="form-control"
-           @input="onInput({ title: $event.target.value, id: id })"
+           @input="onInput({ title: $event.target.value, id })"
            type="text">
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   name: 'ChangeTitleComponent',
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
     },
     title: {

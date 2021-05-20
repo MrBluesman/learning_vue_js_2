@@ -30,7 +30,7 @@
 
 <script>
 import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import store from './vuex/store';
 
 export default {
@@ -44,6 +44,10 @@ export default {
     }),
   },
   store,
+  methods: mapActions(['populateShoppingLists']),
+  mounted() {
+    this.populateShoppingLists();
+  },
 };
 </script>
 

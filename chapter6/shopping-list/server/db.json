@@ -1,9 +1,32 @@
 {
   "shopping-lists": [
     {
-      "title": "new",
-      "items": [],
+      "title": "Groceries",
+      "items": [
+        {
+          "text": "Bananas",
+          "checked": true
+        },
+        {
+          "text": "Apples",
+          "checked": false
+        }
+      ],
       "id": 1
+    },
+    {
+      "title": "Clothes",
+      "items": [
+        {
+          "text": "black dress",
+          "checked": false
+        },
+        {
+          "text": "all stars",
+          "checked": false
+        }
+      ],
+      "id": 2
     }
   ]
 }
