@@ -19,4 +19,6 @@ export default {
   },
   createShoppingList: ({ dispatch }, list) => api.addNewShoppingList(list)
     .then(() => dispatch('populateShoppingLists')),
+  deleteShoppingList: ({ dispatch }, id) => api.deleteShoppingList(id)
+    .then(() => dispatch('populateShoppingLists')),
 };
