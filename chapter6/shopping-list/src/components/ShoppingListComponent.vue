@@ -1,8 +1,10 @@
 <template>
   <div class="shopping-list">
     <h2 class="page-header shopping-list__header">{{ title }}</h2>
-    <AddItemComponent @on-add-item="addItem"/>
-    <ItemsComponent :items="items"/>
+    <AddItemComponent :id="id"
+                      @on-add-item="addItem"/>
+    <ItemsComponent :id="id"
+                    :items="items"/>
     <div class="shopping-list__footer">
       <hr>
       <ChangeTitleComponent :id="id"
@@ -38,12 +40,7 @@ export default {
     },
   },
   methods: {
-    addItem(event) {
-      const {
-        name,
-        onSuccessFullAdd,
-      } = event;
-
+    addItem({ name, onSuccessFullAdd }) {
       if (!name || this.items.filter((i) => i.text === name).length > 0) {
         return;
       }

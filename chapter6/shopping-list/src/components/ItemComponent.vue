@@ -12,11 +12,30 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'ItemComponent',
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     item: {
       type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    isItemChecked() {
+      return this.item.checked;
+    },
+  },
+  methods: mapActions(['updateList']),
+  watch: {
+    // or 'items.checked'
+    isItemChecked() {
+      this.updateList(this.id);
     },
   },
 };

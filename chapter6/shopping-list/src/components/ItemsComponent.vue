@@ -2,6 +2,7 @@
   <div class="items">
     <ItemComponent v-for="(item, index) in items"
                    :key="index"
+                   :id="id"
                    :item="item"></ItemComponent>
   </div>
 </template>
@@ -15,8 +16,13 @@ export default {
     ItemComponent,
   },
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
     items: {
       type: Array,
+      required: true,
     },
   },
 };

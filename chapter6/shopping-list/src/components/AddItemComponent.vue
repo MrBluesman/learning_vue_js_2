@@ -16,19 +16,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'AddItemComponent',
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
       newItem: '',
     };
   },
   methods: {
+    ...mapActions(['updateList']),
     addItem() {
       this.$emit('on-add-item', {
         name: this.newItem.trim(),
         onSuccessFullAdd: () => {
           this.newItem = '';
+          this.updateList(this.id);
         },
       });
     },
