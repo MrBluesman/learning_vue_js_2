@@ -17,4 +17,6 @@ export default {
     const shoppingList = getters.getListById(state, id);
     api.updateShoppingList(shoppingList);
   },
+  createShoppingList: ({ dispatch }, list) => api.addNewShoppingList(list)
+    .then(() => dispatch('populateShoppingLists')),
 };

@@ -7,10 +7,14 @@
           :key="list.id"
           :class="index === 0 ? 'active' : ''"
           role="presentation">
-        <a :href="`#${list.id}`"
-           :aria-controls="list.id"
-           role="tab"
-           data-toggle="tab">{{ list.title }}</a>
+        <shopping-list-title-component :id="list.id"
+                                       :title="list.title"/>
+      </li>
+      <li>
+        <a href="#"
+           @click="addShoppingList">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+        </a>
       </li>
     </ul>
     <div class="tab-content">
@@ -29,6 +33,7 @@
 </template>
 
 <script>
+import ShoppingListTitleComponent from '@/components/ShoppingListTitleComponent.vue';
 import ShoppingListComponent from '@/components/ShoppingListComponent.vue';
 import { mapGetters, mapActions } from 'vuex';
 import store from './vuex/store';
@@ -36,6 +41,7 @@ import store from './vuex/store';
 export default {
   name: 'App',
   components: {
+    ShoppingListTitleComponent,
     ShoppingListComponent,
   },
   computed: {
@@ -44,7 +50,18 @@ export default {
     }),
   },
   store,
-  methods: mapActions(['populateShoppingLists']),
+  methods: {
+    ...mapActions([
+      'populateShoppingLists',
+      'createShoppingList',
+    ]),
+    addShoppingList() {
+      this.createShoppingList({
+        title: 'New Shopping List',
+        items: [],
+      });
+    },
+  },
   mounted() {
     this.populateShoppingLists();
   },
