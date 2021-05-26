@@ -44,6 +44,11 @@ export default {
 <style lang="scss"
        scoped>
 .item {
+  border-radius: 3rem;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+
   &__input {
     margin-right: 7px;
   }
@@ -52,7 +57,7 @@ export default {
     background-color: rgba(128, 124, 121, 0.23);
 
     label {
-      text-decoration: line-through
+      text-decoration: line-through;
     }
   }
 }
