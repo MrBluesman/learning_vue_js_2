@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 v-if="isAdmin">Beer Time!</h1>
+    <h1 v-if="!isAdmin">Beer Time!</h1>
   </div>
 </template>
 

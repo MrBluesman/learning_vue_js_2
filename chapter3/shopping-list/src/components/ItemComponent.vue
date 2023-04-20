@@ -5,7 +5,8 @@
       <label>
         <input v-model="item.checked"
                class="item__input"
-               type="checkbox">{{ item.text }}
+               type="checkbox">
+        <span>{{ item.text }}</span>
       </label>
     </div>
   </li>
@@ -25,6 +26,12 @@ export default {
 <style lang="scss"
        scoped>
 .item {
+  list-style-type: none;
+
+  span {
+    margin-left: 5px;
+  }
+
   &__input {
     margin-right: 7px;
   }

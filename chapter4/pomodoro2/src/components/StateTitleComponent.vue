@@ -17,7 +17,3 @@ export default {
   props: ['isWorking']
 };
 </script>
-
-<style scoped>
-
-</style>

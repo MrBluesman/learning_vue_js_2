@@ -2,7 +2,7 @@
   <div id="app"
        class="container">
     <h2>
-      <span>{{ 'Pomodoro' | uppercase }}</span>
+      <span>{{ 'Pomodoro' | uppercase | addSpace }}</span>
       <ControlsComponent/>
     </h2>
     <StateTitleComponent :is-working="isWorking"/>
