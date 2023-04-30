@@ -5,4 +5,4 @@ export default {
   pause: ({ commit }) => commit(PAUSE),
   stop: ({ commit }) => commit(STOP),
   fetchKitten: ({ commit }) => commit(FETCH_KITTEN),
-}
+};

@@ -21,10 +21,6 @@ import KittensComponent from '@/components/KittensComponent';
 import store from './vuex/store';
 import { mapGetters } from 'vuex';
 
-window.data = {
-  kittens: true
-};
-
 export default {
   name: 'App',
   components: {
@@ -32,9 +28,6 @@ export default {
     CountdownComponent,
     StateTitleComponent,
     ControlsComponent
-  },
-  data() {
-    return window.data;
   },
   computed: mapGetters(['isWorking']),
   store,
