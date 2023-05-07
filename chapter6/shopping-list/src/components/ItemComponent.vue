@@ -1,6 +1,6 @@
 <template>
   <li class="list-group-item item"
-      :class="{'item--removed': item.checked }">
+      :class="{'item--removed': isItemChecked }">
     <div class="checkbox">
       <label>
         <input v-model="item.checked"
@@ -33,10 +33,12 @@ export default {
   },
   methods: mapActions(['updateList']),
   watch: {
-    // or 'items.checked'
     isItemChecked() {
       this.updateList(this.id);
     },
+    // or 'items.checked'
+    // 'item.checked': function () {
+    // },
   },
 };
 </script>

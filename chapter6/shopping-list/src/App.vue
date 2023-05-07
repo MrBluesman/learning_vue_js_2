@@ -25,7 +25,7 @@
            :key="list.id"
            class="tab-pane"
            :class="index === 0 ? 'active' : ''"
-           role="tabpane1"
+           role="tabpanel"
            :id="list.id">
         <ShoppingListComponent :id="list.id"
                                :title="list.title"
