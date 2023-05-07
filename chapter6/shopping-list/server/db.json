@@ -12,6 +12,7 @@
           "checked": false
         }
       ],
+      "color": "#ffdf34",
       "id": 1
     },
     {
@@ -26,6 +27,7 @@
           "checked": false
         }
       ],
+      "color": "#286090",
       "id": 2
     }
   ]
