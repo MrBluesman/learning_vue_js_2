@@ -6,6 +6,7 @@ import { faPlay, faPause, faStop } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import VueNoiseGeneratorPlugin from '@/plugins/VueNoiseGeneratorPlugin';
 
 library.add(faPlay, faPause, faStop);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -16,6 +17,8 @@ Vue.filter('lowercase', (value) => value.toLowerCase());
 Vue.filter('uppercase', (value) => value.toUpperCase());
 Vue.filter('addSpace', (value) => `${value} `);
 Vue.filter('leftPad', (value) => value < 10 ? `0${value}` : value);
+
+Vue.use(VueNoiseGeneratorPlugin);
 
 new Vue({
   render: h => h(App),
