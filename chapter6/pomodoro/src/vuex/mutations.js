@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { START, PAUSE, STOP, FETCH_KITTEN } from '@/vuex/mutation_types';
+import { START, PAUSE, STOP, FETCH_KITTEN, TOGGLE_SOUND } from '@/vuex/mutation_types';
 import { KITTEN_TIME, RESTING_TIME, WORKING_TIME } from '@/config';
 
 function togglePomodoro(state, toggle = false) {
@@ -45,7 +45,7 @@ export default {
     state.stopped = false;
     state.interval = setInterval(() => tick(state), 1000);
 
-    if (state.isWorking) {
+    if (state.isWorking && state.soundEnabled) {
       Vue.noise.start();
     }
   },
@@ -68,5 +68,14 @@ export default {
   },
   [FETCH_KITTEN](state) {
     fetchKitten(state);
+  },
+  [TOGGLE_SOUND](state) {
+    state.soundEnabled = !state.soundEnabled;
+
+    if (state.soundEnabled) {
+      Vue.noise.start();
+    } else {
+      Vue.noise.pause();
+    }
   }
 };

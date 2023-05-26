@@ -16,6 +16,7 @@ const state = {
   interval: null,
   catImgSrc: '',
   timestamp: 0,
+  soundEnabled: true,
 };
 
 export default new Vuex.Store({

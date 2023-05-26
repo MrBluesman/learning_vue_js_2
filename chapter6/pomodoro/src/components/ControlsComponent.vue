@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-group">
+  <div class="btn-group controls">
     <button class="btn btn-outline-secondary mr-1 ml-2"
             :disabled="isStarted && !isPaused"
             @click="start">
@@ -15,6 +15,14 @@
             @click="stop">
       <font-awesome-icon icon="stop"/>
     </button>
+    <div v-show="isStarted && !isPaused && isWorking"
+         class="toggle-volume"
+         @click="toggleSound">
+      <font-awesome-icon v-if="isSoundEnabled"
+                         icon="volume-up"/>
+      <font-awesome-icon v-if="!isSoundEnabled"
+                         icon="volume-mute"/>
+    </div>
   </div>
 </template>
 
@@ -27,23 +35,35 @@ export default {
     ...mapGetters([
       'isStarted',
       'isPaused',
-      'isStopped'
+      'isStopped',
+      'isWorking',
+      'isSoundEnabled',
     ]),
   },
   methods: mapActions([
     'start',
     'pause',
     'stop',
+    'toggleSound',
   ]),
 };
 </script>
 
 <style scoped>
+.controls {
+  display: contents;
+}
+
 button:disabled {
   cursor: default;
 }
 
 button:disabled i {
   color: gray;
+}
+
+.toggle-volume {
+  float: right;
+  cursor: pointer;
 }
 </style>
