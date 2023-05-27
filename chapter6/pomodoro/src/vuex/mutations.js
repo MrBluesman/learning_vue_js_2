@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import {START, PAUSE, STOP, FETCH_KITTEN, TOGGLE_SOUND} from '@/vuex/mutation_types';
-import {KITTEN_TIME, RESTING_TIME, WORKING_TIME} from '@/config';
+import { START, PAUSE, STOP, FETCH_KITTEN, TOGGLE_SOUND } from '@/vuex/mutation_types';
+import { KITTEN_TIME, RESTING_TIME, WORKING_TIME } from '@/config';
 
 function setSound(state, checkIfStopped = false) {
   const isSoundEnabled = checkIfStopped
