@@ -87,7 +87,7 @@ const generateBrownNoise = () => {
 
 export default {
   install: (Vue) => {
-    Vue.directive('noise', (value) => {
+    Vue.directive('noise', (_, { value }) => {
       let noise = generateWhiteNoise();
 
       switch (value) {
