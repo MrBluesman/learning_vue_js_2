@@ -15,7 +15,7 @@
             @click="stop">
       <font-awesome-icon icon="stop"/>
     </button>
-    <div v-show="isStarted && !isPaused && isWorking"
+    <div v-show="isStarted && !isPaused"
          class="toggle-volume"
          @click="toggleSound">
       <font-awesome-icon v-if="isSoundEnabled"

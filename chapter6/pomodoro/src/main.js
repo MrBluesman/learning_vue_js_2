@@ -6,7 +6,9 @@ import { faPlay, faPause, faStop, faVolumeUp, faVolumeMute } from '@fortawesome/
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import VueNoiseGeneratorPlugin from '@/plugins/VueNoiseGeneratorPlugin';
+import VueLofiPlugin from '@/plugins/VueLofiPlugin';
 
 library.add(faPlay, faPause, faStop, faVolumeUp, faVolumeMute);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -19,6 +21,7 @@ Vue.filter('addSpace', (value) => `${value} `);
 Vue.filter('leftPad', (value) => value < 10 ? `0${value}` : value);
 
 Vue.use(VueNoiseGeneratorPlugin);
+Vue.use(VueLofiPlugin);
 
 new Vue({
   render: h => h(App),

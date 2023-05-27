@@ -1,6 +1,6 @@
 <template>
   <div id="app"
-       class="container" v-noise="'brown'">
+       class="container" v-noise="'brown'" v-lofi>
     <h2>
       <span>{{ 'Pomodoro' | uppercase }}</span>
       <ControlsComponent/>
