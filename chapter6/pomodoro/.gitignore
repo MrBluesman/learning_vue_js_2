@@ -24,3 +24,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# mp3
+/public/sleepy-cat-118974.mp3
