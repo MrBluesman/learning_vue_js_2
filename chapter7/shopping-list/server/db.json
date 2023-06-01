@@ -1,0 +1,34 @@
+{
+  "shopping-lists": [
+    {
+      "title": "Groceries",
+      "items": [
+        {
+          "text": "Bananas",
+          "checked": true
+        },
+        {
+          "text": "Apples",
+          "checked": false
+        }
+      ],
+      "color": "#ffdf34",
+      "id": 1
+    },
+    {
+      "title": "Clothes",
+      "items": [
+        {
+          "text": "black dress",
+          "checked": false
+        },
+        {
+          "text": "all stars",
+          "checked": false
+        }
+      ],
+      "color": "#286090",
+      "id": 2
+    }
+  ]
+}
