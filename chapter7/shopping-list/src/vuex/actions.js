@@ -1,5 +1,10 @@
 import getters from '@/vuex/getters';
-import { CHANGE_ACTIVE_LIST, CHANGE_TITLE, POPULATE_SHOPPING_LISTS } from './mutation_types';
+import {
+  ADD_SHOPPING_LIST,
+  CHANGE_ACTIVE_LIST,
+  CHANGE_TITLE, DELETE_SHOPPING_LIST,
+  POPULATE_SHOPPING_LISTS,
+} from './mutation_types';
 import api from '../api';
 
 export default {
@@ -20,8 +25,23 @@ export default {
     const shoppingList = getters.getListById(state)(id);
     api.updateShoppingList(shoppingList);
   },
-  createShoppingList: ({ dispatch }, list) => api.addNewShoppingList(list)
-    .then(() => dispatch('populateShoppingLists')),
-  deleteShoppingList: ({ dispatch }, id) => api.deleteShoppingList(id)
-    .then(() => dispatch('populateShoppingLists')),
+  createShoppingList: ({ dispatch, commit, state }, shoppingList) => api.addNewShoppingList(
+    shoppingList,
+  )
+    .then(() => {
+      dispatch('populateShoppingLists');
+    }, () => {
+      commit(ADD_SHOPPING_LIST, shoppingList);
+      dispatch('changeActiveList', state.shoppingLists.length - 1);
+    }),
+  deleteShoppingList: ({ dispatch, commit, state }, id) => api.deleteShoppingList(id)
+    .then(() => {
+      dispatch('populateShoppingLists');
+    }, () => {
+      commit(DELETE_SHOPPING_LIST, id);
+
+      if (state.shoppingLists.length > 0) {
+        dispatch('changeActiveList', 0);
+      }
+    }),
 };
