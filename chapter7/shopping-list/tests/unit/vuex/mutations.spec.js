@@ -90,11 +90,16 @@ describe('mutations.js', () => {
   });
 
   describe('CHANGE_TITLE', () => {
+    beforeEach(() => {
+      state = {
+        shoppingLists: [{ id: '1', title: 'groceries' }, { id: '2', title: 'clothes' }],
+      };
+    });
+
     it('should change the title of the given list', () => {
       const title = 'learning vue.js';
-      state.shoppinglists = [{ id: '1', title: 'groceries' }, { id: '2', title: 'clothes' }];
       mutations[CHANGE_TITLE](state, { title, id: '1' });
-      expect(state.shoppinglists)
+      expect(state.shoppingLists)
         .to
         .eql([{ id: '1', title }, { id: '2', title: 'clothes' }]);
     });
