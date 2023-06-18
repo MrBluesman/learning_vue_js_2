@@ -13,7 +13,8 @@
         }
       ],
       "color": "#ffdf34",
-      "id": 1
+      "id": 1,
+      "active": true
     },
     {
       "title": "Clothes",
