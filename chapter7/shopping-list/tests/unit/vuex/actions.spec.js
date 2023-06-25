@@ -1,5 +1,6 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
+// eslint-disable-next-line no-unused-vars
 import { CHANGE_TITLE, POPULATE_SHOPPING_LISTS } from '@/vuex/mutation_types';
 import sinonChai from 'sinon-chai';
 import actions from '@/vuex/actions';
@@ -11,8 +12,10 @@ describe('actions.js', () => {
   let lists;
   let store;
 
+  // eslint-disable-next-line no-unused-vars
   const successPost = { post: true };
   const successPut = { put: true };
+  // eslint-disable-next-line no-unused-vars
   const successDelete = { delete: true };
 
   beforeEach(() => {
@@ -44,6 +47,7 @@ describe('actions.js', () => {
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
+      // .persist()
       .get('/shopping-lists')
       .reply(200, JSON.stringify(lists));
 
@@ -55,12 +59,17 @@ describe('actions.js', () => {
       .post('/shopping-lists')
       .reply(200, JSON.stringify(successPost));
 
-    nock('http://localhost:3000')
+    nock('http://localhost:3000', {
+      reqheaders: {
+        'access-control-request-method': 'PUT',
+      },
+    })
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
-      .put('/shopping-lists')
+      // .persist()
+      .options('/shopping-lists/1')
       .reply(200, JSON.stringify(successPut));
 
     nock('http://localhost:3000')
@@ -68,14 +77,22 @@ describe('actions.js', () => {
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
-      .delete('/shopping-lists')
+      // .persist()
+      .put('/shopping-lists/1')
+      .reply(200, JSON.stringify(successPut));
+
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+        'access-control-allow-credentials': 'true',
+      })
+      .delete('/shopping-lists/1')
       .reply(200, JSON.stringify(successDelete));
   });
 
   afterEach(() => {
     // restore stubs and server mock
     store.commit.restore();
-    nock.restore();
   });
 
   describe('populateShoppingLists', () => {
@@ -108,6 +125,22 @@ describe('actions.js', () => {
             .have
             .been
             .calledWith(CHANGE_TITLE, { title, id: '1' });
+
+          done();
+        })
+        .catch((e) => {
+          done(new Error(e.message));
+        });
+    });
+  });
+
+  describe('updateList', () => {
+    it('should return successful PUT response', (done) => {
+      actions.updateList(store, '1')
+        .then((data) => {
+          expect(data.data)
+            .to
+            .eql(successPut);
 
           done();
         })
