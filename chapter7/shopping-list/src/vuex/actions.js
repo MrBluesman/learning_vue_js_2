@@ -24,8 +24,8 @@ export default {
 
     return api.updateShoppingList(shoppingList);
   },
-  // eslint-disable-next-line max-len
-  createShoppingList: ({ dispatch, commit, state }, shoppingList) => new Promise((resolve, reject) => {
+  createShoppingList: ({ dispatch, commit, state }, shoppingList) => new Promise((resolve,
+    reject) => {
     api.addNewShoppingList(
       shoppingList,
     )
@@ -38,14 +38,18 @@ export default {
         dispatch('changeActiveList', state.shoppingLists.length - 1);
       });
   }),
-  deleteShoppingList: ({ dispatch, commit, state }, id) => api.deleteShoppingList(id)
-    .then(() => {
-      dispatch('populateShoppingLists');
-    }, () => {
-      commit(DELETE_SHOPPING_LIST, id);
+  deleteShoppingList: ({ dispatch, commit, state }, id) => new Promise((resolve, reject) => {
+    api.deleteShoppingList(id)
+      .then((data) => {
+        resolve(data);
+        return dispatch('populateShoppingLists');
+      }, (e) => {
+        commit(DELETE_SHOPPING_LIST, id);
+        reject(e);
 
-      if (state.shoppingLists.length > 0) {
-        dispatch('changeActiveList', 0);
-      }
-    }),
+        if (state.shoppingLists.length > 0) {
+          dispatch('changeActiveList', 0);
+        }
+      });
+  }),
 };

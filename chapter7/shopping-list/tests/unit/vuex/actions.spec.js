@@ -1,7 +1,11 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
-// eslint-disable-next-line no-unused-vars
-import { ADD_SHOPPING_LIST, CHANGE_TITLE, POPULATE_SHOPPING_LISTS } from '@/vuex/mutation_types';
+import {
+  ADD_SHOPPING_LIST,
+  CHANGE_TITLE,
+  DELETE_SHOPPING_LIST,
+  POPULATE_SHOPPING_LISTS,
+} from '@/vuex/mutation_types';
 import sinonChai from 'sinon-chai';
 import actions from '@/vuex/actions';
 import nock from 'nock';
@@ -12,16 +16,13 @@ describe('actions.js', () => {
   let lists;
   let store;
 
-  // eslint-disable-next-line no-unused-vars
-  const successPost = { post: true };
-  const successPut = { put: true };
-  // eslint-disable-next-line no-unused-vars
-  const successDelete = { delete: true };
-
   const newShoppingList = {
     id: '3',
     title: 'New',
   };
+  const successPost = { post: true };
+  const successPut = { put: true };
+  const successDelete = { delete: true };
 
   beforeEach(() => {
     lists = [{
@@ -75,12 +76,16 @@ describe('actions.js', () => {
       .put('/shopping-lists/1')
       .reply(200, JSON.stringify(successPut));
 
-    nock('http://localhost:3000')
+    nock('http://localhost:3000', {
+      reqheaders: {
+        'access-control-request-method': 'DELETE',
+      },
+    })
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
-      .delete('/shopping-lists/1')
+      .options('/shopping-lists/1')
       .reply(200, JSON.stringify(successDelete));
   });
 
@@ -144,7 +149,6 @@ describe('actions.js', () => {
     });
   });
 
-  // TODO: test for createShoppingList
   describe('createShoppingList', () => {
     it('should return successful POST response', (done) => {
       nock('http://localhost:3000', {
@@ -201,5 +205,55 @@ describe('actions.js', () => {
     });
   });
 
-  // TODO: test for deleteShoppingList
+  describe('createShoppingList', () => {
+    it('should return successful DELETE response', (done) => {
+      nock('http://localhost:3000')
+        .defaultReplyHeaders({
+          'access-control-allow-origin': '*',
+          'access-control-allow-credentials': 'true',
+        })
+        .delete('/shopping-lists/1')
+        .reply(200, JSON.stringify(successDelete));
+
+      actions.deleteShoppingList(store, '1')
+        .then((data) => {
+          expect(data.data)
+            .to
+            .eql(successDelete);
+
+          done();
+        })
+        .catch((e) => {
+          done(new Error(e.message));
+        });
+    });
+
+    it('should call commit method with DELETE_SHOPPING_LIST string and correct list when API is unavailable', (done) => {
+      nock('http://localhost:3000')
+        .defaultReplyHeaders({
+          'access-control-allow-origin': '*',
+          'access-control-allow-credentials': 'true',
+        })
+        .delete('/shopping-lists/1')
+        .reply(404);
+
+      actions.deleteShoppingList(store, '1')
+        .then(() => {
+          done();
+        })
+        .catch((e) => {
+          expect(e.status)
+            .to
+            .eql(404);
+
+          expect(store.commit)
+            .to
+            .have
+            .been
+            .calledWith(DELETE_SHOPPING_LIST, '1');
+
+          done();
+        });
+    });
+  });
 });
