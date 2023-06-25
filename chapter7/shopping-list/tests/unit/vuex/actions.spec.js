@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 // eslint-disable-next-line no-unused-vars
-import { CHANGE_TITLE, POPULATE_SHOPPING_LISTS } from '@/vuex/mutation_types';
+import { ADD_SHOPPING_LIST, CHANGE_TITLE, POPULATE_SHOPPING_LISTS } from '@/vuex/mutation_types';
 import sinonChai from 'sinon-chai';
 import actions from '@/vuex/actions';
 import nock from 'nock';
@@ -17,6 +17,11 @@ describe('actions.js', () => {
   const successPut = { put: true };
   // eslint-disable-next-line no-unused-vars
   const successDelete = { delete: true };
+
+  const newShoppingList = {
+    id: '3',
+    title: 'New',
+  };
 
   beforeEach(() => {
     lists = [{
@@ -47,17 +52,8 @@ describe('actions.js', () => {
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
-      // .persist()
       .get('/shopping-lists')
       .reply(200, JSON.stringify(lists));
-
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-        'access-control-allow-credentials': 'true',
-      })
-      .post('/shopping-lists')
-      .reply(200, JSON.stringify(successPost));
 
     nock('http://localhost:3000', {
       reqheaders: {
@@ -68,7 +64,6 @@ describe('actions.js', () => {
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
-      // .persist()
       .options('/shopping-lists/1')
       .reply(200, JSON.stringify(successPut));
 
@@ -77,7 +72,6 @@ describe('actions.js', () => {
         'access-control-allow-origin': '*',
         'access-control-allow-credentials': 'true',
       })
-      // .persist()
       .put('/shopping-lists/1')
       .reply(200, JSON.stringify(successPut));
 
@@ -149,4 +143,63 @@ describe('actions.js', () => {
         });
     });
   });
+
+  // TODO: test for createShoppingList
+  describe('createShoppingList', () => {
+    it('should return successful POST response', (done) => {
+      nock('http://localhost:3000', {
+        body: JSON.stringify(newShoppingList),
+      })
+        .defaultReplyHeaders({
+          'access-control-allow-origin': '*',
+          'access-control-allow-credentials': 'true',
+        })
+        .post('/shopping-lists')
+        .reply(200, JSON.stringify(successPost));
+
+      actions.createShoppingList(store, newShoppingList)
+        .then((data) => {
+          expect(data.data)
+            .to
+            .eql(successPost);
+
+          done();
+        })
+        .catch((e) => {
+          done(new Error(e.message));
+        });
+    });
+
+    it('should call commit method with ADD_SHOPPING_LIST string and correct list when API is unavailable', (done) => {
+      nock('http://localhost:3000', {
+        body: JSON.stringify(newShoppingList),
+      })
+        .defaultReplyHeaders({
+          'access-control-allow-origin': '*',
+          'access-control-allow-credentials': 'true',
+        })
+        .post('/shopping-lists')
+        .reply(404);
+
+      actions.createShoppingList(store, newShoppingList)
+        .then(() => {
+          done();
+        })
+        .catch((e) => {
+          expect(e.status)
+            .to
+            .eql(404);
+
+          expect(store.commit)
+            .to
+            .have
+            .been
+            .calledWith(ADD_SHOPPING_LIST, newShoppingList);
+
+          done();
+        });
+    });
+  });
+
+  // TODO: test for deleteShoppingList
 });

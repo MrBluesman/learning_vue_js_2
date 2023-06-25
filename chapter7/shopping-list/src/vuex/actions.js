@@ -24,15 +24,20 @@ export default {
 
     return api.updateShoppingList(shoppingList);
   },
-  createShoppingList: ({ dispatch, commit, state }, shoppingList) => api.addNewShoppingList(
-    shoppingList,
-  )
-    .then(() => {
-      dispatch('populateShoppingLists');
-    }, () => {
-      commit(ADD_SHOPPING_LIST, shoppingList);
-      dispatch('changeActiveList', state.shoppingLists.length - 1);
-    }),
+  // eslint-disable-next-line max-len
+  createShoppingList: ({ dispatch, commit, state }, shoppingList) => new Promise((resolve, reject) => {
+    api.addNewShoppingList(
+      shoppingList,
+    )
+      .then((data) => {
+        resolve(data);
+        return dispatch('populateShoppingLists');
+      }, (e) => {
+        commit(ADD_SHOPPING_LIST, shoppingList);
+        reject(e);
+        dispatch('changeActiveList', state.shoppingLists.length - 1);
+      });
+  }),
   deleteShoppingList: ({ dispatch, commit, state }, id) => api.deleteShoppingList(id)
     .then(() => {
       dispatch('populateShoppingLists');
