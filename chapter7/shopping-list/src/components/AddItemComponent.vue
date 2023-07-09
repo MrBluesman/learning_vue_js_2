@@ -33,13 +33,14 @@ export default {
   },
   methods: {
     ...mapActions(['updateList']),
+    onSuccessFullAdd() {
+      this.newItem = '';
+      this.updateList(this.id);
+    },
     addItem() {
       this.$emit('on-add-item', {
         name: this.newItem.trim(),
-        onSuccessFullAdd: () => {
-          this.newItem = '';
-          this.updateList(this.id);
-        },
+        onSuccessFullAdd: this.onSuccessFullAdd,
       });
     },
   },
