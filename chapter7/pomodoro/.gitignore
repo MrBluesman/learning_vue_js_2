@@ -25,5 +25,10 @@ yarn-error.log*
 *.sln
 *.sw?
 
+# Coverage
+/coverage
+/.nyc_output
+
+
 # mp3
 /public/sleepy-cat-118974.mp3
