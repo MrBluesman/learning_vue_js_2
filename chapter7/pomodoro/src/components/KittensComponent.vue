@@ -1,5 +1,5 @@
 <template>
-  <div class="card bg-light">
+  <div class="card bg-light kittens">
     <div class="card-body">
       <img :src="catImgSrc"
            alt="Cat image">
