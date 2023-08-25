@@ -27,10 +27,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
+      - name: List files in the repository
+        run: |
+          cd chapter8/pomodoro
+          ls ${{ github.workspace }}
+      - run: echo "🔒 Install dependencies"
       - name: Change directory to pomodoro app
         run: |
           cd chapter8/pomodoro
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+          npm install
       - run: echo "🍏 This job's status is ${{ job.status }}."
