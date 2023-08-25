@@ -30,10 +30,15 @@ jobs:
       - name: List files in the repository
         run: |
           cd chapter8/pomodoro
-          ls ${{ github.workspace }}
+          ls -la
       - run: echo "🔒 Install dependencies"
-      - name: Change directory to pomodoro app
+      - name: Install dependencies
         run: |
           cd chapter8/pomodoro
-          npm install
+          npm ci
+      - run: echo "🚨 Run unit tests"
+      - name: Run unit tests
+        run: |
+          cd chapter8/pomodoro
+          npm run test:unit
       - run: echo "🍏 This job's status is ${{ job.status }}."
