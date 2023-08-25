@@ -6,10 +6,10 @@ module.exports = {
   include: [
     'src/**/*.{js,vue}',
   ],
-  // exclude: [
-  //   'src/*.js',
-  //   '**/index.js',
-  // ],
+  exclude: [
+    'src/*.js',
+    '**/index.js',
+  ],
   reporter: [
     'lcov',
     'text',
