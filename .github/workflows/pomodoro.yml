@@ -41,6 +41,11 @@ jobs:
         run: |
           cd chapter8/pomodoro
           npm run test:unit
+      - run: echo "💉 Run e2e tests"
+      - name: Run e2e tests
+        run: |
+          cd chapter8/pomodoro
+          npm run test:e2e
       - run: echo "🔨 Build app"
       - name: Build app
         run: |
