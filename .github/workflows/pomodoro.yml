@@ -1,6 +1,10 @@
 name: Pomodoro
+
 run-name: Build & deploy of Pomodoro app [${{ github.actor }}] 🚀
+
+
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
