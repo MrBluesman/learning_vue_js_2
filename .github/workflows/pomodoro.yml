@@ -48,9 +48,9 @@ jobs:
 
       - run: echo "💉 Run e2e tests"
       - name: Run e2e tests
-      - run: sudo apt-get install xvfb
-      - run: |
+        run: |
           cd chapter8/pomodoro
+          sudo apt-get install xvfb
           xvfb-run --auto-servernum npm test -- --env chrome
 
       - run: echo "🔨 Build app"
