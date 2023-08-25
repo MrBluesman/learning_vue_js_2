@@ -1,5 +1,5 @@
 name: Pomodoro
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: Build & deploy of Pomodoro app [${{ github.actor }}] 🚀
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
         - 'chapter8/pomodoro/**'
 
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -21,4 +21,12 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: echo "✳️ Use specific Node version [16.x]."
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Change directory to pomodoro app
+        run: |
+          cd chapter8/pomodoro
       - run: echo "🍏 This job's status is ${{ job.status }}."
