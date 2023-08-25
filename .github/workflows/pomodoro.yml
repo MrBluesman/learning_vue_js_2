@@ -2,8 +2,10 @@ name: Pomodoro
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
+    branches:
+      - master
     paths:
-      - 'chapter8/pomorodo/**'
+        - 'chapter8/pomodoro/**'
 
 jobs:
   Explore-GitHub-Actions:
