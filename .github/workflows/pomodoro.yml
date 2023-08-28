@@ -59,9 +59,22 @@ jobs:
           cd chapter8/pomodoro
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+#      - name: Deploy 🚀
+#        uses: JamesIves/github-pages-deploy-action@v4
+#        with:
+#          folder: chapter8/pomodoro/dist # The folder the action should deploy.
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          folder: chapter8/pomodoro/dist # The folder the action should deploy.
+           # upload entire directory
+          path: 'chapter8/pomodoro/dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
